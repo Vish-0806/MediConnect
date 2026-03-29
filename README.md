@@ -45,21 +45,25 @@ This platform provides only preliminary health analysis and is not a substitute 
 
 ---
 
+
 ## 📁 Project Structure
+
+```
 MediConnect/
 │
-├── frontend/ # React app
-├── backend/ # FastAPI backend
-│ ├── ai_engine/
-│ ├── routes/
-│ ├── models/
-├── database/ # DB schema & configs
-├── docs/
+├── frontend/        # React app
+├── backend/         # FastAPI backend
+│   ├── ai_engine/   # AI / NLP logic
+│   ├── routes/      # API routes
+│   ├── models/      # Data models
+│
+├── database/        # DB schema & configs
+├── docs/            # Documentation
 ├── README.md
 
 
+```
 
----
 
 ## 📌 Status
 
