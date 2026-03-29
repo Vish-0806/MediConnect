@@ -1,4 +1,4 @@
-# 🩺 MediConnect
+#  🩺🏥 MediConnect
 
 MediConnect is an AI-powered healthcare platform that allows users to perform preliminary diagnosis based on symptoms and connect with doctors for further consultation.
 
@@ -6,12 +6,12 @@ MediConnect is an AI-powered healthcare platform that allows users to perform pr
 
 ## 🚀 Features
 
-* 🔐 User Authentication (Login/Signup)
-* 🧠 Symptom-based Diagnosis (API/AI)
-* 📊 Health Result Dashboard
-* 🏥 Doctor & Hospital Selection
-* 📅 Appointment Booking (Simulated)
-* 🗂️ Patient History Tracking
+- 🔐 User Authentication (Login/Signup)
+- 🧠 Symptom-based Diagnosis (AI/NLP)
+- 📊 Health Result Dashboard
+- 🏥 Doctor & Hospital Selection
+- 📅 Appointment Booking
+- 📁 Patient History Tracking
 
 ---
 
@@ -27,14 +27,40 @@ This platform provides only preliminary health analysis and is not a substitute 
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-* Frontend: HTML, CSS, JavaScript
-* Backend: Flask (Python)
-* Database: SQLite
+### 🌐 Frontend
+- HTML
+- React.js
+- Tailwind CSS
+
+### ⚙️ Backend
+- FastAPI (Python)
+
+### 🧠 AI / NLP
+- spaCy
+
+### 🗄 Database
+- PostgreSQL
+
+---
+
+## 📁 Project Structure
+MediConnect/
+│
+├── frontend/ # React app
+├── backend/ # FastAPI backend
+│ ├── ai_engine/
+│ ├── routes/
+│ ├── models/
+├── database/ # DB schema & configs
+├── docs/
+├── README.md
+
+
 
 ---
 
 ## 📌 Status
 
-🚧 Project initialized — development starting
+🚧 Project setup completed — development starting
