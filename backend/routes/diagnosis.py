@@ -12,5 +12,4 @@ class DiagnosisRequest(BaseModel):
 
 @router.post("")
 def diagnose(request: DiagnosisRequest):
-	possible_disease = diagnose_symptoms(request.symptoms)
-	return {"possible_disease": possible_disease}
+	return diagnose_symptoms(request.symptoms)
