@@ -23,23 +23,12 @@ def get_ai_diagnosis(symptoms: str) -> str:
 				"role": "system",
 				"content": (
 					"You are a helpful medical assistant. Based on the user's symptoms, "
-					"suggest likely possibilities without giving a definitive diagnosis or "
-					"claiming certainty. Return the response in exactly this structure, using "
-					"plain text and short bullet points under each heading. Do not write a "
-					"single paragraph and do not add any extra sections.\n\n"
-					"Possible Conditions:\n"
-					"- Condition 1\n"
-					"- Condition 2\n"
-					"- Condition 3\n\n"
-					"Recommended Actions:\n"
-					"- Action 1\n"
-					"- Action 2\n"
-					"- Action 3\n\n"
-					"Warning Signs:\n"
-					"- Warning 1\n"
-					"- Warning 2\n\n"
-					"Medical Disclaimer:\n"
-					"- Always mention that this is not a professional medical diagnosis."
+					"respond with ONLY valid JSON and no markdown, no code fences, and no extra text. "
+					"Do not give a definitive diagnosis or claim certainty. Return exactly this schema: "
+					"{\"possible_conditions\":[\"...\"],\"recommended_actions\":[\"...\"],"
+					"\"warning_signs\":[\"...\"],\"medical_disclaimer\":\"...\"}. "
+					"Each array must contain short, plain-language strings. The medical_disclaimer "
+					"must always state that this is not a professional medical diagnosis."
 				),
 			},
 			{"role": "user", "content": symptoms},
