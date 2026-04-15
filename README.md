@@ -51,16 +51,59 @@ This platform provides only preliminary health analysis and is not a substitute 
 ```
 MediConnect/
 │
-├── frontend/        # React app
-├── backend/         # FastAPI backend
-│   ├── ai_engine/   # AI / NLP logic
-│   ├── routes/      # API routes
-│   ├── models/      # Data models
-│
-├── database/        # DB schema & configs
-├── docs/            # Documentation
-├── README.md
-
+├── backend/
+│   ├── main.py
+│   ├── test_api.py
+│   └── ai_engine/
+│       ├── __init__.py
+│       ├── diagnosis_engine.py
+│       ├── groq_client.py
+│       └── prompt_templates.py
+├── config/
+│   └── settings.py
+├── database/
+│   ├── database.py
+│   └── seed_data.py
+├── models/
+│   ├── __init__.py
+│   ├── appointment.py
+│   ├── doctor.py
+│   ├── patient.py
+│   └── user.py
+├── routes/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── appointments.py
+│   ├── auth.py
+│   ├── diagnosis.py
+│   ├── doctors.py
+│   └── patients.py
+├── schemas/
+│   ├── appointment_schema.py
+│   ├── diagnosis_schema.py
+│   ├── doctor_schema.py
+│   └── patient_schema.py
+├── services/
+│   ├── appointment_service.py
+│   ├── diagnosis_service.py
+│   ├── doctor_service.py
+│   └── patient_service.py
+├── tests/
+│   ├── test_api.py
+│   ├── test_database.py
+│   └── test_diagnosis.py
+├── utils/
+│   ├── helpers.py
+│   └── validators,py
+├── docs/
+└── frontend/
+	├── public/
+	└── src/
+		├── assets/
+		├── components/
+		├── hooks/
+		├── pages/
+		└── services/
 
 ```
 
