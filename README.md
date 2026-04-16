@@ -108,6 +108,13 @@ MediConnect/
 ```
 
 
-## 📌 Status
+## 📌 Current Stage
 
-🚧 On Progress
+- **Backend:** FastAPI app scaffolded (`backend/main.py`) with diagnosis routes and working home endpoint.
+- **AI / NLP:** `backend/ai_engine` contains diagnosis logic (`diagnosis_engine.py`, `groq_client.py`, `prompt_templates.py`).
+- **Database:** DB helpers and seed data present in `backend/database`.
+- **Models & Services:** Domain models, services, and route modules implemented under `backend/models`, `backend/services`, and `backend/routes`.
+- **Tests:** Basic scripts exist (`backend/test_api.py`, `backend/tests/*`) for quick checks.
+- **Frontend:** Project scaffold exists under `frontend/` (`public/` and `src/`) but app work is in progress.
+
+Next steps: add CI/tests, complete frontend pages, and wire frontend to backend APIs.
