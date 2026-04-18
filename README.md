@@ -94,7 +94,7 @@ MediConnect/
 │   └── test_diagnosis.py
 ├── utils/
 │   ├── helpers.py
-│   └── validators,py
+│   └── validators.py
 ├── docs/
 └── frontend/
 	├── public/
