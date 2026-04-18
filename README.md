@@ -118,3 +118,5 @@ MediConnect/
 - **Frontend:** Project scaffold exists under `frontend/` (`public/` and `src/`) but app work is in progress.
 
 Next steps: add CI/tests, complete frontend pages, and wire frontend to backend APIs.
+
+🚧 Project setup completed — development starting. On Progress
