@@ -67,4 +67,4 @@ MediConnect/
 
 ## 📌 Status
 
-🚧 Project setup completed — development starting. On Progress
+🚧 On Progress
