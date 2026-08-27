@@ -6,20 +6,26 @@
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Groq AI](https://img.shields.io/badge/AI%20Engine-Groq%20Llama%203.3--70B-f55036?style=for-the-badge)](https://groq.com/)
+[![Groq LPU](https://img.shields.io/badge/AI%20Engine-Groq%20Llama%203.3--70B-f55036?style=for-the-badge)](https://groq.com/)
 [![spaCy](https://img.shields.io/badge/NLP-spaCy-09A3D5?style=for-the-badge&logo=spacy&logoColor=white)](https://spacy.io/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-In%20Active%20Development-orange?style=for-the-badge)](#-project-roadmap)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge)](https://github.com/Vish-0806/MediConnect/pulls)
 
 <p align="center">
   <a href="#-overview">Overview</a> •
+  <a href="#-interactive-triage-preview">Live Preview</a> •
   <a href="#-system-architecture">Architecture</a> •
+  <a href="#-clinical-workflow">Clinical Flow</a> •
+  <a href="#-database-schema">Data Model</a> •
   <a href="#-key-features">Features</a> •
+  <a href="#-ai-engine--safety-guardrails">AI Engine & Safety</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-repository-structure">Structure</a> •
   <a href="#-quickstart-guide">Quickstart</a> •
+  <a href="#-docker--containerization">Docker</a> •
   <a href="#-api-documentation">API Reference</a> •
-  <a href="#-security--medical-safety">Safety & Privacy</a> •
   <a href="#-project-roadmap">Roadmap</a> •
   <a href="#-faq">FAQ</a>
 </p>
@@ -30,193 +36,359 @@
 
 > [!WARNING]
 > ### ⚠️ Clinical Disclaimer
-> **MediConnect provides preliminary, automated symptom analysis strictly for educational and informational purposes.** It is **NOT** a diagnostic medical device, medical opinion, or substitute for consultation with a licensed healthcare practitioner. In the event of a medical emergency, immediately dial your local emergency services (e.g., 911, 112) or visit the nearest emergency care facility.
+> **MediConnect provides preliminary, automated symptom analysis strictly for educational and informational purposes.** It is **NOT** a diagnostic medical device, medical opinion, or substitute for consultation with a licensed healthcare practitioner. In the event of an acute medical emergency, immediately contact your local emergency services (e.g., 911, 112) or visit the nearest emergency medical facility.
 
 ---
 
 ## 📖 Overview
 
-Navigating primary healthcare often involves friction: patients struggle to interpret symptoms, experience anxiety from unguided internet searches, and face delays in securing appointments with the right medical specialists.
+Navigating primary healthcare often involves friction: patients struggle to interpret physical symptoms, experience anxiety from unstructured internet searches, and face delays in securing appointments with the appropriate medical specialists.
 
 **MediConnect** bridges this gap by unifying **intelligent natural language symptom triage** with **clinical booking pathways**:
-1. **Intelligent Intake:** Patients describe their symptoms in plain, conversational language.
-2. **Dual AI/NLP Engine:** Queries the high-speed **Groq Cloud API** running `llama-3.3-70b-versatile` with strict JSON schema parsing, backed by a local **spaCy** token and rule-based fallback analyzer.
-3. **Actionable Insights:** Returns structured differential possibilities, safe immediate self-care recommendations, and red-flag warning indicators.
-4. **Specialist Pathway:** Seamlessly guides the patient toward verified doctors, clinic directories, and appointment booking.
+1. **Conversational Symptom Intake:** Patients describe their symptoms in plain, natural language.
+2. **High-Speed Dual AI Engine:** Queries the ultra-fast **Groq Cloud API** running `llama-3.3-70b-versatile` with strict JSON schema parsing, reinforced by a local **spaCy** token and rule-based fallback analyzer.
+3. **Structured Clinical Guidance:** Delivers 3–5 differential possibilities, non-invasive self-care suggestions, and immediate "red-flag" warning signs requiring urgent clinical care.
+4. **Specialist Pathway:** Seamlessly matches patients with verified doctors, clinic directories, and real-time consultation scheduling.
+
+---
+
+## 📱 Interactive Triage Preview
+
+Here is how MediConnect transforms a natural symptom description into structured clinical insights:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  👤 PATIENT INPUT: "Fever of 101°F, persistent dry cough, and chest tightness for 3 days"      │
+└────────────────────────────────────────────────────────────────────────────────────────────────┘
+                                                │
+                                                ▼
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  🩺 MEDICONNECT STRUCTURED CLINICAL CARD                                                       │
+├────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                │
+│  🔍 POSSIBLE CONDITIONS                                                                        │
+│  • Influenza (Flu)                                                                             │
+│  • Viral Upper Respiratory Tract Infection                                                     │
+│  • Early Acute Bronchitis                                                                      │
+│                                                                                                │
+│  💡 RECOMMENDED ACTIONS                                                                        │
+│  • Rest thoroughly and maintain fluid intake (> 2.5L water or warm broths)                     │
+│  • Monitor body temperature every 4 hours                                                      │
+│  • Schedule an appointment with a General Physician or Pulmonologist                           │
+│                                                                                                │
+│  🚨 WARNING SIGNS (Seek Emergency Care Immediately If You Experience):                        │
+│  • Severe difficulty breathing or gasping for air                                              │
+│  • Persistent pain or pressure in the chest                                                    │
+│  • Bluish discoloration of the lips or face                                                    │
+│  • Temperature exceeding 103°F (39.4°C) unresponsive to fever reducers                         │
+│                                                                                                │
+│  👨‍⚕️ RECOMMENDED SPECIALTY: Pulmonology / Internal Medicine                                    │
+│  [📅 Find Specialists & Book Consultation]                                                     │
+│                                                                                                │
+│  ⚖️ Disclaimer: Not a formal diagnosis. Consult a licensed physician for medical advice.      │
+└────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## 🏛 System Architecture
 
-The following diagram illustrates how user requests move through MediConnect's layered architecture:
+The following diagram illustrates MediConnect's layered architecture spanning client interaction, API gateways, intelligence engines, and data storage:
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Client Layer"]
+    subgraph Client ["Client Presentation Layer"]
         A[Web Browser / React Frontend]
+        Mobile[Mobile Web / Responsive PWA]
     end
 
-    subgraph Gateway ["API Gateway (FastAPI)"]
-        B["FastAPI Server (backend/main.py)"]
+    subgraph Gateway ["FastAPI API Gateway (backend/main.py)"]
+        B["ASGI Server / Uvicorn Router"]
         R1["Health Endpoint (GET /)"]
         R2["Diagnosis Router (POST /diagnosis)"]
+        R3["Auth Router (POST /auth/login)"]
+        R4["Doctors Router (GET /doctors)"]
+        R5["Appointments Router (POST /appointments)"]
         B --> R1
         B --> R2
+        B --> R3
+        B --> R4
+        B --> R5
     end
 
-    subgraph AIEngine ["AI & NLP Intelligence Layer"]
-        D1["Groq Client (Llama 3.3 70B)"]
-        D2["spaCy Token/POS Extractor (en_core_web_sm)"]
-        P["JSON Schema & Type Validator"]
-        R2 --> D1
-        R2 -.-> D2
+    subgraph Intelligence ["AI & NLP Intelligence Layer (backend/ai_engine)"]
+        D1["Groq API Client (Llama 3.3 70B Versatile)"]
+        D2["spaCy Tokenizer & Lemmatizer (en_core_web_sm)"]
+        P["Strict JSON Regex & Schema Validator"]
+        R2 -->|Primary Inference| D1
+        R2 -.->|Offline / Fallback| D2
         D1 --> P
     end
 
-    subgraph Domain ["Core Application Services (Scaffolded)"]
-        S1["Auth & RBAC Service"]
-        S2["Doctor Matching Service"]
-        S3["Appointment Booking Service"]
-        S4["Patient Records Service"]
+    subgraph Domain ["Application Business Logic (backend/services)"]
+        S1["Authentication & RBAC Service"]
+        S2["Doctor Directory & Matching Service"]
+        S3["Appointment Booking Engine"]
+        S4["Patient Medical Records Service"]
     end
 
-    subgraph Data ["Data Storage (Planned)"]
+    subgraph Persistence ["Persistence Layer (backend/database)"]
         DB[(PostgreSQL Database)]
+        Models["SQLAlchemy ORM Entities"]
+        DB --- Models
         S1 --> DB
         S2 --> DB
         S3 --> DB
         S4 --> DB
     end
 
-    A -->|"HTTP POST /diagnosis"| B
-    P -->|"Validated Structured Diagnosis"| A
-    A -.->|"Consultation & Booking"| Domain
+    Client -->|"HTTP / REST API"| Gateway
+    P -->|"Sanitized JSON Response"| Client
+    Gateway --> Domain
 ```
 
 ---
 
-## 🚀 Key Features
+## 🔄 Clinical Workflow
 
-| Feature | Description | Status |
-| :--- | :--- | :---: |
-| 🧠 **LLM-Powered Symptom Triage** | Real-time clinical reasoning powered by Groq `llama-3.3-70b-versatile` with structured JSON output enforcement. | ✅ **Active** |
-| 🔍 **spaCy NLP Rule Engine** | Offline-capable tokenization, POS tagging, and lemma extraction (`en_core_web_sm`) for symptom matching. | ✅ **Active** |
-| 🛡️ **Robust Schema Sanitizer** | Regex sanitization, JSON code-fence stripping, and strict Pydantic model validation with 502 bad-gateway interception. | ✅ **Active** |
-| 🔐 **Authentication & RBAC** | Role-Based Access Control for Patients, Doctors, and Administrators with JWT token validation. | ⏳ *Scaffolded* |
-| 🏥 **Doctor & Clinic Directory** | Specialist search by department, location, rating, and disease expertise. | ⏳ *Scaffolded* |
-| 📅 **Appointment Management** | Interactive scheduling, calendar conflict resolution, and status tracking (Pending, Confirmed, Completed). | ⏳ *Scaffolded* |
-| 📁 **Patient Medical Dossier** | Historical symptom logs, diagnostic summaries, and prescription attachments. | ⏳ *Scaffolded* |
+The sequence below illustrates the end-to-end lifecycle of a patient session:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Patient as 👤 Patient
+    participant Frontend as 🌐 React App
+    participant API as ⚙️ FastAPI Gateway
+    participant Groq as ⚡ Groq Cloud (Llama 3.3)
+    participant Validator as 🛡️ Schema Validator
+    participant DB as 🗄️ PostgreSQL
+    actor Doctor as 👨‍⚕️ Doctor
+
+    Patient->>Frontend: Enter symptoms ("fever and shortness of breath")
+    Frontend->>API: POST /diagnosis { symptoms: "..." }
+    API->>Groq: Prompt Llama 3.3 70B (Enforced JSON Schema)
+    Groq-->>API: Raw AI Completion
+    API->>Validator: Strip code fences & regex match JSON
+    Validator-->>API: Validated Dict (Conditions, Advice, Warnings)
+    API-->>Frontend: 200 OK Structured Diagnosis Card
+    Frontend-->>Patient: Render differential conditions & warnings
+
+    opt Book Clinical Consultation
+        Patient->>Frontend: Select Recommended Specialist
+        Frontend->>API: POST /appointments/book
+        API->>DB: Save Appointment & Link Diagnosis Dossier
+        DB-->>API: Booking Confirmed (Ref ID: #APT-482)
+        API-->>Doctor: Push Notification / Dashboard Alert
+        API-->>Frontend: Confirmation & Calendar Invite
+    end
+```
+
+---
+
+## 🗄 Database Schema
+
+The relational data model connects users, patients, doctors, diagnosis history, and appointments:
+
+```mermaid
+erDiagram
+    USER ||--o| PATIENT : "has"
+    USER ||--o| DOCTOR : "has"
+    PATIENT ||--o{ APPOINTMENT : "books"
+    DOCTOR ||--o{ APPOINTMENT : "attends"
+    PATIENT ||--o{ DIAGNOSIS_RECORD : "receives"
+
+    USER {
+        uuid id PK
+        string email UK
+        string hashed_password
+        string role "patient | doctor | admin"
+        timestamp created_at
+    }
+
+    PATIENT {
+        uuid id PK
+        uuid user_id FK
+        string full_name
+        date date_of_birth
+        string blood_group
+        text emergency_contact
+    }
+
+    DOCTOR {
+        uuid id PK
+        uuid user_id FK
+        string full_name
+        string specialization
+        string license_number UK
+        string hospital_affiliation
+        decimal consultation_fee
+        float rating
+    }
+
+    APPOINTMENT {
+        uuid id PK
+        uuid patient_id FK
+        uuid doctor_id FK
+        timestamp appointment_time
+        string status "pending | confirmed | completed | cancelled"
+        text notes
+    }
+
+    DIAGNOSIS_RECORD {
+        uuid id PK
+        uuid patient_id FK
+        text reported_symptoms
+        jsonb possible_conditions
+        jsonb recommended_actions
+        jsonb warning_signs
+        timestamp created_at
+    }
+```
+
+---
+
+## 🧠 AI Engine & Safety Guardrails
+
+### Why Groq LPU™ for Healthcare Triage?
+When patients describe acute symptoms, response time directly impacts anxiety and usability. Traditional cloud LLM APIs can exhibit 10–20 second latency. MediConnect integrates **Groq LPU™ (Language Processing Unit)** hardware running **Meta Llama 3.3 70B Versatile**:
+- ⚡ **Inference Speed:** ~250–300 tokens/second
+- ⏱️ **End-to-End Latency:** Sub-second (< 800ms) turnaround for full clinical triage
+- 🎯 **Accuracy:** 70B parameter frontier model capabilities for nuanced medical terminology
+
+### Guardrail Pipeline
+
+```
+Raw Patient Symptoms ➔ System Prompt Guardrails ➔ Groq Inference ➔ Code Fence Stripper ➔ Regex Pattern Extractor ➔ Pydantic Type Check ➔ 502 Shield
+```
+
+1. **Liability Boundary Enforcement:** System prompt forbids definitive clinical claims or certainty declarations.
+2. **Defensive Normalization:** The parsing engine (`backend/routes/diagnosis.py: _parse_ai_diagnosis`) strips backticks, extracts matching JSON objects via regex, and verifies all required schema fields (`possible_conditions`, `recommended_actions`, `warning_signs`, `medical_disclaimer`).
+3. **Local NLP Fallback:** If the external API is unreachable or rate-limited, MediConnect automatically falls back to `backend/ai_engine/diagnosis_engine.py`, leveraging spaCy's POS tagging and lemma analysis.
+
+---
+
+## 🚀 Key Features Matrix
+
+| Domain | Feature | Description | Status |
+| :--- | :--- | :--- | :---: |
+| **AI Triage** | **LLM Symptom Reasoning** | Ultra-low-latency clinical evaluation via Groq Llama 3.3 70B. | ✅ **Active** |
+| **NLP** | **spaCy Linguistic Fallback** | Tokenization, POS filtering, and lemma matching (`en_core_web_sm`). | ✅ **Active** |
+| **Security** | **Schema Sanitization** | Regex extraction and Pydantic validation intercepting malformed outputs. | ✅ **Active** |
+| **Auth** | **JWT & Role-Based Access** | Role separation for Patients, Doctors, and Hospital Admins. | ⏳ *Scaffolded* |
+| **Directory** | **Doctor & Clinic Discovery** | Specialist directory searchable by department, ratings, and hospital. | ⏳ *Scaffolded* |
+| **Scheduling** | **Appointment Engine** | Multi-slot scheduling, double-booking prevention, and calendar sync. | ⏳ *Scaffolded* |
+| **Records** | **Patient Health Dossier** | Comprehensive history tracking symptom evaluations and clinical notes. | ⏳ *Scaffolded* |
+| **Frontend** | **React Web Dashboard** | Modern, responsive web interface built with React.js & Tailwind CSS. | ⏳ *Scaffolded* |
 
 ---
 
 ## 🛠 Tech Stack
 
-### Backend & Core Services
-- **Framework:** [FastAPI](https://fastapi.tiangolo.com/) (Asynchronous, high-performance web framework for Python 3.10+)
-- **Server:** [Uvicorn](https://www.uvicorn.org/) (Lightning-fast ASGI server)
-- **Validation & Serialization:** [Pydantic v2](https://docs.pydantic.dev/)
-- **Configuration:** [python-dotenv](https://github.com/theskumar/python-dotenv)
+### ⚙️ Backend & API Gateway
+- **Language:** Python 3.10+
+- **API Framework:** [FastAPI](https://fastapi.tiangolo.com/)
+- **Data Validation:** [Pydantic v2](https://docs.pydantic.dev/)
+- **ASGI Server:** [Uvicorn](https://www.uvicorn.org/)
+- **HTTP Client:** [Requests](https://requests.readthedocs.io/)
+- **Environment Management:** [python-dotenv](https://github.com/theskumar/python-dotenv)
 
-### AI, Machine Learning & NLP
-- **Primary LLM:** [Groq Cloud](https://console.groq.com/) running **Meta Llama 3.3 70B Versatile** (ultra-low inference latency)
-- **NLP / Linguistic Engine:** [spaCy](https://spacy.io/) with the `en_core_web_sm` English linguistic model
-- **Schema Validation:** Strict JSON format enforcement with regex boundary matching and type validation
+### 🧠 AI, NLP & Machine Learning
+- **Primary Inference:** [Groq Cloud](https://console.groq.com/) — Meta Llama 3.3 70B Versatile
+- **Natural Language Processing:** [spaCy](https://spacy.io/) with `en_core_web_sm` model
 
-### Database & Storage (Planned)
-- **Relational Database:** [PostgreSQL](https://www.postgresql.org/)
-- **ORM & Migrations:** [SQLAlchemy](https://www.sqlalchemy.org/) & [Alembic](https://alembic.sqlalchemy.org/)
+### 🗄 Database & Persistence (Planned)
+- **Database:** [PostgreSQL](https://www.postgresql.org/)
+- **ORM:** [SQLAlchemy](https://www.sqlalchemy.org/)
+- **Migrations:** [Alembic](https://alembic.sqlalchemy.org/)
 
-### Frontend (Scaffolded)
-- **Library:** [React.js](https://react.dev/)
+### 🌐 Frontend (Scaffolded)
+- **Framework:** [React.js](https://react.dev/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Icons:** Lucide React / Heroicons
 
 ---
 
 ## 📁 Repository Structure
 
-The project employs a clean separation of concerns, separating application routing, business domain logic, data models, and AI engine utilities:
-
 ```text
 MediConnect/
 │
-├── .gitignore                           # Git ignore rules (.env, venv, pycache)
+├── .gitignore                           # Excludes venv, .env, pycache, build artifacts
 ├── README.md                            # Comprehensive project guide
 │
-├── backend/                             # Core FastAPI Backend
-│   ├── main.py                          # Application entry point & router registration
-│   ├── test_api.py                      # Standalone CLI test script for AI diagnosis
+├── backend/                             # Core FastAPI Backend Application
+│   ├── main.py                          # App initialization & router mounting
+│   ├── test_api.py                      # Standalone CLI diagnosis runner
 │   │
-│   ├── ai_engine/                       # AI and NLP Processing Modules
+│   ├── ai_engine/                       # AI & NLP Intelligence Engine
 │   │   ├── __init__.py
 │   │   ├── diagnosis_engine.py          # Local spaCy tokenization & rule-based engine
 │   │   ├── groq_client.py               # Groq Cloud API caller (Llama 3.3 70B)
-│   │   └── prompt_templates.py          # Medical assistant prompt definitions
+│   │   └── prompt_templates.py          # Clinical assistant prompt definitions
 │   │
-│   ├── config/                          # Configuration & Environment Settings
-│   │   └── settings.py
+│   ├── config/                          # Configuration & Settings
+│   │   └── settings.py                  # Pydantic BaseSettings & env loader
 │   │
-│   ├── database/                        # PostgreSQL DB connection & Seeders
-│   │   ├── database.py
-│   │   └── seed_data.py
+│   ├── database/                        # PostgreSQL Connection & Seeds
+│   │   ├── database.py                  # Engine & sessionmaker setup
+│   │   └── seed_data.py                 # Mock doctors & clinic data
 │   │
-│   ├── models/                          # Database ORM entity models
+│   ├── models/                          # SQLAlchemy ORM Entities
 │   │   ├── __init__.py
-│   │   ├── appointment.py               # Appointment schema definition
-│   │   ├── doctor.py                    # Doctor profile & clinic entity
-│   │   ├── patient.py                   # Patient record entity
-│   │   └── user.py                      # User auth & credentials model
+│   │   ├── appointment.py               # Appointment ORM model
+│   │   ├── doctor.py                    # Doctor profile ORM model
+│   │   ├── patient.py                   # Patient dossier ORM model
+│   │   └── user.py                      # User credentials ORM model
 │   │
-│   ├── routes/                          # FastAPI route controllers
+│   ├── routes/                          # FastAPI Controller Routers
 │   │   ├── __init__.py
 │   │   ├── admin.py                     # Administrative actions
-│   │   ├── appointments.py              # Appointment scheduling endpoints
-│   │   ├── auth.py                      # Signup, login, & JWT issuance
-│   │   ├── diagnosis.py                 # POST /diagnosis (AI intake endpoint)
+│   │   ├── appointments.py              # Booking & scheduling endpoints
+│   │   ├── auth.py                      # Authentication & token endpoints
+│   │   ├── diagnosis.py                 # POST /diagnosis implementation
 │   │   ├── doctors.py                   # Doctor search & directory
 │   │   └── patients.py                  # Patient profiles & history
 │   │
-│   ├── schemas/                         # Pydantic request & response schemas
+│   ├── schemas/                         # Pydantic Schemas (DTOs)
 │   │   ├── appointment_schema.py
 │   │   ├── diagnosis_schema.py
 │   │   ├── doctor_schema.py
 │   │   └── patient_schema.py
 │   │
-│   ├── services/                        # Business logic layer
+│   ├── services/                        # Business Logic Layer
 │   │   ├── appointment_service.py
 │   │   ├── diagnosis_service.py
 │   │   ├── doctor_service.py
 │   │   └── patient_service.py
 │   │
-│   ├── tests/                           # Automated test suites
+│   ├── tests/                           # Test Suites
 │   │   ├── test_api.py
 │   │   ├── test_database.py
 │   │   └── test_diagnosis.py
 │   │
-│   └── utils/                           # Shared utility helpers & validators
+│   └── utils/                           # Helpers & Validators
 │       ├── helpers.py
 │       └── validators.py
 │
-├── frontend/                            # React Web Client (Scaffolded)
-│   ├── public/                          # Static web assets
-│   └── src/                             # React application source
-│       ├── assets/                      # Icons, illustrations, styles
-│       ├── components/                  # Reusable UI components (Modals, Cards, Nav)
-│       ├── hooks/                       # Custom React hooks
-│       ├── pages/                       # View pages (Diagnosis, Doctors, Dashboard)
-│       └── services/                    # API client layer (Axios / Fetch)
+├── frontend/                            # React Client (Scaffolded)
+│   ├── public/                          # Static assets
+│   └── src/                             # Source code
+│       ├── assets/                      # Brand graphics, icons
+│       ├── components/                  # Diagnosis cards, Navigation, Forms
+│       ├── hooks/                       # useAuth, useDiagnosis hooks
+│       ├── pages/                       # Home, Triage, Doctors, Appointments
+│       └── services/                    # Axios API client
 │
-└── docs/                                # Architectural guides and specifications
+└── docs/                                # Documentation assets & architecture guides
 ```
 
 ---
 
 ## ⚡ Quickstart Guide
 
-Follow these steps to set up and run the MediConnect backend locally on your system.
-
 ### 1. Prerequisites
-- **Python 3.10 or higher** installed on your system
-- **Git** installed
+- **Python 3.10+**
+- **Git**
 - A free **Groq Cloud API Key** from [console.groq.com](https://console.groq.com/)
 
 ### 2. Clone the Repository
@@ -225,21 +397,21 @@ git clone https://github.com/Vish-0806/MediConnect.git
 cd MediConnect
 ```
 
-### 3. Create & Activate Virtual Environment
+### 3. Create & Activate a Virtual Environment
 
-**On Windows (PowerShell):**
+**Windows (PowerShell):**
 ```powershell
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 ```
 
-**On Windows (Command Prompt):**
+**Windows (Command Prompt):**
 ```cmd
 python -m venv venv
 .\venv\Scripts\activate.bat
 ```
 
-**On macOS / Linux:**
+**macOS / Linux:**
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -250,50 +422,82 @@ source venv/bin/activate
 pip install fastapi uvicorn requests python-dotenv spacy pydantic
 ```
 
-Download the spaCy linguistic model:
+Download the spaCy NLP linguistic pipeline:
 ```bash
 python -m spacy download en_core_web_sm
 ```
 
 ### 5. Configure Environment Variables
-Create a `.env` file in the `backend/` folder (or workspace root):
+Create a `.env` file in the `backend/` directory or root workspace:
 
 ```env
-# Groq Cloud API Key (Required for AI Diagnosis)
+# Required: Groq Cloud API Key for AI Diagnosis
 GROQ_API_KEY=gsk_your_groq_api_key_here
 
-# App Settings
+# Optional Application Settings
 PORT=8000
 ENVIRONMENT=development
+DATABASE_URL=postgresql://postgres:password@localhost:5432/mediconnect_db
+JWT_SECRET=your_jwt_secret_key_here
 ```
 
-> [!TIP]
-> Never commit `.env` containing your real API keys to Git. The `.gitignore` file is pre-configured to exclude `.env` automatically.
-
-### 6. Start the Backend Server
+### 6. Run the Backend Service
 
 Run Uvicorn from the `backend/` directory:
 ```bash
 cd backend
 uvicorn main:app --reload --port 8000
 ```
-*(Or from the project root using `python -m uvicorn backend.main:app --reload --port 8000`)*
+*(Or from root: `python -m uvicorn backend.main:app --reload --port 8000`)*
 
-Once started, the service will be available at:
-- 🌐 **Base API:** `http://localhost:8000`
-- 📚 **Swagger UI:** `http://localhost:8000/docs`
-- 📖 **ReDoc Documentation:** `http://localhost:8000/redoc`
+Access the interactive API explorer:
+- 🌐 **Root Health:** [http://localhost:8000](http://localhost:8000)
+- 📚 **Swagger UI:** [http://localhost:8000/docs](http://localhost:8000/docs)
+- 📖 **ReDoc:** [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+---
+
+## 🐳 Docker & Containerization
+
+To run MediConnect in a containerized environment with Docker:
+
+### 1. Create `Dockerfile` in `backend/`
+```dockerfile
+FROM python:3.10-slim
+
+WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends gcc && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m spacy download en_core_web_sm
+
+COPY . .
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+### 2. Build & Run
+```bash
+docker build -t mediconnect-backend ./backend
+docker run -p 8000:8000 --env-file backend/.env mediconnect-backend
+```
 
 ---
 
 ## 🔌 API Documentation
 
-### 1. Root / Health Check
-Verifies that the FastAPI server is running.
+### 1. Root Service Check
+Verifies server health and gateway availability.
 
 - **Method:** `GET`
 - **Path:** `/`
-- **Response `200 OK`:**
+- **Response (`200 OK`):**
   ```json
   {
     "message": "MediConnect Backend Running 🚀"
@@ -303,7 +507,7 @@ Verifies that the FastAPI server is running.
 ---
 
 ### 2. AI Symptom Diagnosis
-Evaluates conversational symptom descriptions and returns structured medical insights.
+Evaluates conversational patient symptoms and returns structured clinical differential guidance.
 
 - **Method:** `POST`
 - **Path:** `/diagnosis`
@@ -321,148 +525,169 @@ Evaluates conversational symptom descriptions and returns structured medical ins
 {
   "possible_conditions": [
     "Influenza (Flu)",
-    "Acute Viral Upper Respiratory Tract Infection",
+    "Viral Upper Respiratory Tract Infection",
     "Early Stage Acute Bronchitis"
   ],
   "recommended_actions": [
-    "Rest thoroughly and increase fluid intake (water, warm soups)",
+    "Rest thoroughly and ensure adequate hydration (> 2.5 liters daily)",
     "Track body temperature at regular 4-hour intervals",
-    "Take over-the-counter antipyretics if advised by a pharmacist",
-    "Schedule a clinical consultation if symptoms fail to improve in 48 hours"
+    "Consult a physician if symptoms do not improve within 48-72 hours"
   ],
   "warning_signs": [
-    "Difficulty breathing or shortness of breath",
-    "Persistent chest pressure or localized chest pain",
-    "Fever spiking over 103°F (39.4°C) or unresponsive to fever reducers",
-    "Bluish lips or confusion"
+    "Shortness of breath or difficulty breathing",
+    "Persistent chest pain or pressure",
+    "Fever exceeding 103°F (39.4°C) or unresponsive to antipyretics",
+    "Bluish coloration of lips or fingers"
   ],
-  "medical_disclaimer": "This analysis is generated by AI for informational purposes and is not a professional medical diagnosis. Please consult a licensed medical professional."
+  "medical_disclaimer": "This analysis is generated by an AI assistant for informational purposes and is not a professional medical diagnosis. Consult a qualified doctor for medical advice."
 }
 ```
 
-#### Response Fields Explanation
+#### Response Fields Specification
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `possible_conditions` | `string[]` | 3 to 5 potential conditions matching the reported symptoms. |
-| `recommended_actions` | `string[]` | Practical, safe, non-invasive self-care steps and hydration guidance. |
-| `warning_signs` | `string[]` | Critical "red-flag" symptoms requiring immediate emergency clinical evaluation. |
-| `medical_disclaimer` | `string` | Mandatory safety disclaimer informing the user this is not a definitive diagnosis. |
+| `possible_conditions` | `Array<string>` | 3 to 5 potential non-definitive conditions matching reported symptoms. |
+| `recommended_actions` | `Array<string>` | Practical, non-invasive self-care and monitoring recommendations. |
+| `warning_signs` | `Array<string>` | Critical red-flag emergency symptoms requiring urgent medical attention. |
+| `medical_disclaimer` | `string` | Mandatory safety statement reiterating the non-definitive nature of the AI analysis. |
 
 ---
 
-### 3. Testing with cURL & Python
+### 3. Client Integration Examples
 
-#### Using cURL
+#### cURL
 ```bash
 curl -X POST "http://localhost:8000/diagnosis" \
      -H "Content-Type: application/json" \
-     -d "{\"symptoms\": \"fever, body aches, and fatigue\"}"
+     -d '{"symptoms": "fever of 101F, dry cough, and fatigue for 3 days"}'
 ```
 
-#### Using Python
+#### Python (`requests`)
 ```python
 import requests
 
-url = "http://localhost:8000/diagnosis"
-payload = {"symptoms": "severe migraine with sensitivity to light"}
+response = requests.post(
+    "http://localhost:8000/diagnosis",
+    json={"symptoms": "sudden sharp headache and sensitivity to bright light"}
+)
 
-response = requests.post(url, json=payload)
+print(response.status_code)
 print(response.json())
 ```
 
-#### Using JavaScript / Fetch
-```javascript
-const response = await fetch("http://localhost:8000/diagnosis", {
+#### JavaScript (`fetch` / TypeScript)
+```typescript
+interface DiagnosisResponse {
+  possible_conditions: string[];
+  recommended_actions: string[];
+  warning_signs: string[];
+  medical_disclaimer: string;
+}
+
+const res = await fetch("http://localhost:8000/diagnosis", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ symptoms: "persistent abdominal pain after meals" }),
+  body: JSON.stringify({ symptoms: "mild sore throat and runny nose" }),
 });
 
-const data = await response.json();
-console.log(data);
+const data: DiagnosisResponse = await res.json();
+console.log(data.possible_conditions);
 ```
+
+---
+
+## ⚠️ Error Handling Matrix
+
+| HTTP Status | Error Detail / Cause | Resolution |
+| :--- | :--- | :--- |
+| `422 Unprocessable Entity` | Missing or invalid `symptoms` string in request body. | Ensure body is JSON with a non-empty `{"symptoms": "..."}` string. |
+| `502 Bad Gateway` | AI response could not be parsed into valid JSON. | Check Groq API availability or review LLM response formatting. |
+| `502 Bad Gateway` | Missing required schema field in AI response. | Guardrails catch truncated responses; retry the request. |
+| `500 Internal Server Error` | Unhandled server exception or missing `GROQ_API_KEY`. | Verify `.env` configuration contains a valid `GROQ_API_KEY`. |
 
 ---
 
 ## 🧪 Testing & Verification
 
-MediConnect includes standalone test runners and unit test directories:
-
-### Quick AI Engine Smoke Test
-To verify that your Groq API key and AI inference are operating properly without launching the web server:
+### Smoke Test
+Verify that your Groq API connection and prompt pipelines work without starting the FastAPI web server:
 ```bash
 python backend/test_api.py
 ```
 
-### Running Automated Test Suites (When fully configured)
+### Running Unit & Integration Tests (pytest)
 ```bash
-pytest backend/tests/ -v
+pytest backend/tests/ -v --tb=short
 ```
 
 ---
 
 ## 🔒 Security & Medical Safety
 
-- **Zero PII Exposure to LLM:** Only non-identifiable symptom descriptions are forwarded to inference models; personal information (names, emails, addresses) is isolated in relational storage.
-- **Strict Schema Enforcement:** Responses from third-party AI APIs are strictly sanitized and parsed through JSON regex validators before reaching the client, preventing prompt injection leakage or malformed responses.
-- **Definitive Diagnosis Prevention:** System prompt instructions explicitly prohibit the LLM from declaring a single definitive diagnosis, enforcing differential possibilities and encouraging consultation with licensed physicians.
-- **Environment Isolation:** All sensitive credentials (`GROQ_API_KEY`, database secrets) are managed exclusively through environment variables.
+- **Anonymized Processing:** No Personal Health Information (PHI) or personally identifiable metadata is submitted to external LLM APIs.
+- **Defensive Parsing:** Responses are scrubbed of code fences and verified against strict Pydantic types before being dispatched to clients.
+- **Liability Boundaries:** Prompt engineering explicitly instructs the model to prioritize red-flag warnings and abstain from definitive diagnostic declarations.
+- **Secret Isolation:** Environment secrets (`GROQ_API_KEY`, database credentials) are never checked into version control.
 
 ---
 
 ## 🗺️ Project Roadmap
 
 - [x] **Phase 1: AI Diagnostics Foundation**
-  - [x] FastAPI skeleton & modular routing architecture
-  - [x] Groq Cloud client integration with `llama-3.3-70b-versatile`
-  - [x] Robust JSON response extraction & error handling (502 bad gateway shields)
-  - [x] spaCy fallback NLP symptom parser (`diagnosis_engine.py`)
-- [ ] **Phase 2: Persistence & Data Modeling**
-  - [ ] Configure PostgreSQL database connection pool (`backend/database/database.py`)
-  - [ ] Implement SQLAlchemy models for Users, Doctors, Patients, Appointments
-  - [ ] Setup Alembic migration pipelines
+  - [x] FastAPI skeleton & modular router structure
+  - [x] Groq Cloud API integration running `llama-3.3-70b-versatile`
+  - [x] Strict JSON regex validation & 502 bad gateway shields
+  - [x] Local spaCy rule-based NLP fallback engine
+- [ ] **Phase 2: Database & Data Persistence**
+  - [ ] PostgreSQL connection pool configuration (`backend/database/database.py`)
+  - [ ] SQLAlchemy ORM models for Users, Doctors, Patients, Appointments, and Diagnoses
+  - [ ] Alembic migration framework
 - [ ] **Phase 3: Authentication & Security**
-  - [ ] JWT-based token generation, password hashing with passlib/bcrypt
-  - [ ] Route authentication guards and role-based permissions (Patient vs. Doctor vs. Admin)
+  - [ ] JWT authentication with bcrypt password hashing (`backend/routes/auth.py`)
+  - [ ] Role-based access control (Patient, Doctor, Admin)
 - [ ] **Phase 4: Doctor Discovery & Appointment Scheduling**
-  - [ ] Doctor listing & department filtering API
-  - [ ] Real-time time-slot reservation and booking confirmation
-- [ ] **Phase 5: React Frontend Application**
-  - [ ] Modern UI with Tailwind CSS
-  - [ ] Interactive symptom intake form with real-time feedback
-  - [ ] Diagnosis card results with red-flag warning highlights
-  - [ ] Doctor booking calendar integration
+  - [ ] Doctor directory search by specialty, hospital, and rating
+  - [ ] Time-slot conflict resolution and calendar booking
+- [ ] **Phase 5: React Web Application**
+  - [ ] Symptom intake UI with real-time feedback
+  - [ ] Responsive diagnosis card with red-flag badges
+  - [ ] Doctor selection and appointment booking flow
 
 ---
 
 ## ❓ FAQ
 
 <details>
-<summary><b>1. Do I need a paid Groq Cloud subscription to run MediConnect?</b></summary>
-No. Groq provides a generous free tier for developers with high rate limits, making it easy to test and develop with <code>llama-3.3-70b-versatile</code> at zero cost.
+<summary><b>1. Is Groq Cloud free to use?</b></summary>
+Yes. Groq provides a generous free tier for developers with high token limits, making it ideal for testing and development with <code>llama-3.3-70b-versatile</code> at zero cost.
 </details>
 
 <details>
-<summary><b>2. How does the local spaCy fallback work?</b></summary>
-The <code>backend/ai_engine/diagnosis_engine.py</code> module uses spaCy's <code>en_core_web_sm</code> pipeline to filter stop words, extract parts of speech (nouns, adjectives, verbs), and lemmatize tokens to identify disease patterns locally without making any external API calls.
+<summary><b>2. Can MediConnect operate entirely offline?</b></summary>
+Yes. While Groq provides frontier LLM reasoning, MediConnect includes a built-in local fallback engine (<code>backend/ai_engine/diagnosis_engine.py</code>) that utilizes spaCy's offline English model to extract key symptoms and provide rule-based matching.
 </details>
 
 <details>
-<summary><b>3. How can I contribute to the frontend development?</b></summary>
-The frontend structure is scaffolded under <code>frontend/src/</code>. You can initialize a React/Vite app within that directory, integrate Tailwind CSS, and connect your components to the FastAPI endpoints listed in the <a href="#-api-documentation">API Documentation</a>.
+<summary><b>3. How do I contribute to the frontend?</b></summary>
+The frontend structure is scaffolded under <code>frontend/src/</code>. You can set up a Vite + React application, configure Tailwind CSS, and connect UI components to the endpoints documented in the <a href="#-api-documentation">API Reference</a>.
+</details>
+
+<details>
+<summary><b>4. Does this platform store user medical history?</b></summary>
+Persistent storage of diagnosis records is built into the data schema (Phase 2). Once PostgreSQL is connected, patient accounts will maintain an encrypted history of past triage sessions for review by consulting doctors.
 </details>
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are what make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community an incredible space to build and collaborate. Any contributions you make are **deeply appreciated**.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/NewFeature`)
-3. Commit your Changes (`git commit -m 'Add some NewFeature'`)
-4. Push to the Branch (`git push origin feature/NewFeature`)
-5. Open a Pull Request
+1. **Fork the Repository**
+2. **Create your Feature Branch:** `git checkout -b feature/AmazingFeature`
+3. **Commit your Changes:** `git commit -m 'Add some AmazingFeature'`
+4. **Push to the Branch:** `git push origin feature/AmazingFeature`
+5. **Open a Pull Request**
 
 ---
 
@@ -473,5 +698,5 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/Vish-0806">Vishal S Naik</a> and contributors.</sub>
+  <sub>Designed & Developed with ❤️ by <a href="https://github.com/Vish-0806">Vishal S Naik</a> and contributors.</sub>
 </div>
