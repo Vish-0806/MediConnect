@@ -35,14 +35,14 @@
 ---
 
 > [!WARNING]
-> ### ⚠️ Clinical Disclaimer
+> ### ⚠️ Clinical Disclaimer 
 > **MediConnect provides preliminary, automated symptom analysis strictly for educational and informational purposes.** It is **NOT** a diagnostic medical device, medical opinion, or substitute for consultation with a licensed healthcare practitioner. In the event of an acute medical emergency, immediately contact your local emergency services (e.g., 911, 112) or visit the nearest emergency medical facility.
 
 ---
 
 ## 📖 Overview
 
-Navigating primary healthcare often involves friction: patients struggle to interpret physical symptoms, experience anxiety from unstructured internet searches, and face delays in securing appointments with the appropriate medical specialists.
+Navigating primary healthcare often involves friction: patients struggle to interpret physical symptoms, experience anxiety from unstructured internet searches, and face delays in securing appointments with the appropriate medical specialists 
 
 **MediConnect** bridges this gap by unifying **intelligent natural language symptom triage** with **clinical booking pathways**:
 1. **Conversational Symptom Intake:** Patients describe their symptoms in plain, natural language.
